@@ -36,10 +36,6 @@ class Home extends Component {
         title: 'Home',
     }
 
-    static navigationOptions = {
-        title: 'Home',
-    }
-
     render() {
         return (
             <ScrollView>
