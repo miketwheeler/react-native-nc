@@ -242,4 +242,6 @@ const styles = StyleSheet.create({
         width: 60,
     },
 })
+
+
 export default Main;
