@@ -128,6 +128,12 @@ export const fetchPartners = () => dispatch => {
         .catch(error => dispatch(partnersFailed(error.message)));
 };
 
+export const postFavorite = campsiteId => dispatch => {
+    setTimeout(() => {
+        dispatch(addFavorite(campsiteId));
+    }, 2000);
+};
+
 export const partnersLoading = () => ({
     type: ActionTypes.PARTNERS_LOADING
 });
@@ -140,4 +146,9 @@ export const partnersFailed = errMess => ({
 export const addPartners = partners => ({
     type: ActionTypes.ADD_PARTNERS,
     payload: partners
+});
+
+export const addFavorite = campsiteId => ({
+    type: ActionTypes.ADD_FAVORITE,
+    payload: campsiteId
 });
