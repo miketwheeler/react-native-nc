@@ -23,12 +23,13 @@ class Reservation extends Component {
 
     handleReservation() {
         console.log(JSON.stringify(this.state));
-        let month = this.state.date.getMonth()+1;
-        let day = this.state.date.getDate();
-        let yr = this.state.date.getFullYear();
+        // let month = this.state.date.getMonth()+1;
+        // let day = this.state.date.getDate();
+        // let yr = this.state.date.getFullYear();
         Alert.alert(
             'Begin Search?',
-            `Number of Campers: ${this.state.campers}\nHike-In? ${this.state.hikeIn}\nDate: ${month}/${day}/${yr}`,
+            // `Number of Campers: ${this.state.campers}\nHike-In? ${this.state.hikeIn}\nDate: ${month}/${day}/${yr}`,
+            `Number of Campers: ${this.state.campers}\nHike-In? ${this.state.hikeIn}\nDate: ${this.state.date.toLocaleDateString('en-US')}`,
             [
                 {
                     text: 'Cancel',
