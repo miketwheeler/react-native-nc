@@ -7,6 +7,7 @@ import * as Permissions from 'expo-permissions';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { baseUrl } from '../shared/baseUrl';
 import * as ImageManipulator from 'expo-image-manipulator';
+import * as MediaLibrary from 'expo-media-library';
 
 
 
@@ -161,7 +162,7 @@ class RegisterTab extends Component {
                 aspect: [1, 1]
             });
             if (!capturedImage.cancelled) {
-                console.log(capturedImage);
+                // console.log(capturedImage);
                 this.processImage(capturedImage.uri);
             }
         }
@@ -171,10 +172,11 @@ class RegisterTab extends Component {
         const cameraRollPermission = await Permissions.askAsync(Permissions.CAMERA_ROLL);
         if (cameraRollPermission.status === 'granted') {
             const capturedImage = await ImagePicker.launchImageLibraryAsync({
+                allowsEditing: true,
                 aspect: [1,1]
             });
             if(!capturedImage.cancelled) {
-                console.log(capturedImage);
+                // console.log(capturedImage);
                 this.processImage(capturedImage.uri);
             }
         }
@@ -184,11 +186,12 @@ class RegisterTab extends Component {
         const processedImage = await ImageManipulator.manipulateAsync(
             imgUri,
             [{ resize: {width: 400} }],
-            { format: ImageManipulator.SaveFormat.PNG }
+            // { format: ImageManipulator.SaveFormat.PNG }
+            { format: 'png' }
         );
         console.log(processedImage);
-        this.setState({ imageUrl: processedImage.uri })
-
+        this.setState({ imageUrl: processedImage.uri });
+        MediaLibrary.saveToLibraryAsync(processedImage.uri);
     };
 
     handleRegister() {
